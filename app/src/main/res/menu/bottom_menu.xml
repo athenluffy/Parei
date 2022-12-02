@@ -5,8 +5,8 @@
         android:title="Home"
         android:icon="@drawable/ic_home"
         android:enabled="true"/>
-    <item android:id="@+id/accoount"
-        android:title="profile"
+    <item android:id="@+id/account"
+        android:title="Profile"
         android:icon="@drawable/ic_account"
         android:enabled="true"/>
     <item android:id="@+id/cart"

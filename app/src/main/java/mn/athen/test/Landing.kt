@@ -11,9 +11,9 @@ class Landing : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_landing)
-        var btmNavigation = R.id.landingBtmNavigation
+        var btmNavigation:BottomNavigationView = findViewById(R.id.landingBtmNavigation)
 
-       NavigationBarView.OnItemSelectedListener{item->
+       btmNavigation.setOnItemSelectedListener { item->
            when(item.itemId)
            {
                R.id.home -> {
@@ -26,7 +26,7 @@ class Landing : AppCompatActivity() {
                    // Respond to navigation item 1 click
                    true
                }
-               R.id.accoount -> {
+               R.id.account -> {
                    Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show()
                    // Respond to navigation item 1 click
                    true
