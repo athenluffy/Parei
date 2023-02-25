@@ -5,6 +5,9 @@
     <string name="facebook_app_id">5616839065070975</string>
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">0024ab90a9c4b13a45cf5a5dffcb96f3</string>
+    <string name="hint">Enter Word</string>
+    <string name="save">Save</string>
+    <string name="save_err">Please Enter a Word</string>
 
 
 </resources>
