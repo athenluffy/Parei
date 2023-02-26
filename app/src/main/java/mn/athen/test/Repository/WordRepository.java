@@ -40,7 +40,7 @@ public class WordRepository {
 
         @Override
         protected Void doInBackground(Word... words) {
-            wordDao.insert(words[0]);
+            aSyncTaskdao.insert(words[0]);
             return null;
         }
     }
