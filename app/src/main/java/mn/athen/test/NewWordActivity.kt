@@ -18,10 +18,10 @@ class NewWordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_new_word)
         wordView=findViewById(R.id.edit_word)
 
-        val btn:Button = findViewById(R.id.btn_save);
+        val btn:Button = findViewById(R.id.btn_save)
 
         btn.setOnClickListener {
-            val intent: Intent = Intent()
+            val intent = Intent()
             if(TextUtils.isEmpty(wordView.text))
             {
                 setResult(RESULT_CANCELED,intent)

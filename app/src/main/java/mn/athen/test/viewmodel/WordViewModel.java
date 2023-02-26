@@ -12,8 +12,8 @@ import mn.athen.test.Class.Word;
 import mn.athen.test.Repository.WordRepository;
 
 public class WordViewModel extends AndroidViewModel {
-    private WordRepository repository;
-    private LiveData<List<Word>> words;
+    private final WordRepository repository;
+    private final LiveData<List<Word>> words;
 
     public WordViewModel(@NonNull Application application) {
         super(application);
@@ -21,7 +21,8 @@ public class WordViewModel extends AndroidViewModel {
         words=repository.getAllWords();
     }
 
-    public LiveData<List<Word>> getWords() { return words;};
-    public void insert(Word word) { repository.insert(word);}
+    public LiveData<List<Word>> getWords() { return words;}
 
+    public void insert(Word word) { repository.insert(word);}
+    public void deleteword(Word word) { repository.delete(word);}
 }
