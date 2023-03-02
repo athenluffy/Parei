@@ -1,69 +1,61 @@
-package mn.athen.test.db;
+package mn.athen.test.db
 
-import android.content.Context;
-import android.os.AsyncTask;
+import android.content.Context
+import android.os.AsyncTask
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
+import mn.athen.test.Class.Word
+import mn.athen.test.dao.WordDao
 
-import androidx.annotation.NonNull;
-import androidx.room.Database;
-import androidx.room.Room;
-import androidx.room.RoomDatabase;
-import androidx.sqlite.db.SupportSQLiteDatabase;
+@Database(entities = [Word::class], version = 1, exportSchema = false)
+abstract class WordRoomDatabase : RoomDatabase() {
+    abstract fun wordDao(): WordDao
+    private class PopulateDbAsync(instance: WordRoomDatabase?) : AsyncTask<Void?, Void?, Void?>() {
+        private val wordDao: WordDao
+        var words = arrayOf("Naruto", "Itachi", "Jiraiya")
 
-import mn.athen.test.Class.Word;
-import mn.athen.test.dao.WordDao;
+        init {
+            wordDao = instance!!.wordDao()
+        }
 
-@Database(entities = {Word.class},version = 1,exportSchema = false)
-public abstract class WordRoomDatabase extends RoomDatabase {
+        @Deprecated("Deprecated in Java")
+        override fun doInBackground(vararg p0: Void?): Void? {
+            wordDao.deleteAll()
+            for (s in words) {
+                val word = Word(s)
+                wordDao.insert(word)
+            }
+            return null
+        }
+    }
 
-    public abstract WordDao wordDao();
-    private static WordRoomDatabase INSTANCE;
+    companion object {
+        private var instance: WordRoomDatabase? = null
+        private val LOCK =Any()
+        private val callback: Callback = object : Callback() {
+            override fun onOpen(db: SupportSQLiteDatabase) {
+                super.onOpen(db)
+                PopulateDbAsync(instance).execute()
+            }
+        }
+        operator fun invoke(context:Context)= instance?: synchronized(LOCK){
+            instance?: buildDb(context).also {
+                instance=it
+            }
+        }
 
-    private static RoomDatabase.Callback callback=
-            new RoomDatabase.Callback()
-            {
-                @Override
-                public void onOpen(@NonNull SupportSQLiteDatabase db) {
-                    super.onOpen(db);
-                    new PopulateDbAsync(INSTANCE).execute();
-                }
-            };
+        @JvmStatic
+        private fun buildDb(context: Context) =
 
-     public static WordRoomDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (WordRoomDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE= Room.databaseBuilder(context.getApplicationContext(),
-                            WordRoomDatabase.class,"word_database")
+                       Room.databaseBuilder(
+                            context.applicationContext,
+                            WordRoomDatabase::class.java, "word_database"
+                        )
                             .addCallback(callback)
                             .fallbackToDestructiveMigration()
-                            .build();
-                }
-            }
+                            .build()
 
-        }
-        return INSTANCE;
-    }
-
-    private static class PopulateDbAsync extends AsyncTask<Void,Void,Void> {
-
-         private final WordDao wordDao;
-         String[] words= {"Naruto","Itachi","Jiraiya"};
-        public PopulateDbAsync(WordRoomDatabase instance) {
-            wordDao=instance.wordDao();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            wordDao.deleteAll();
-
-            for (String s : words) {
-                Word word = new Word(s);
-                wordDao.insert(word);
-            }
-            return null;
-        }
     }
 }
-
-
-

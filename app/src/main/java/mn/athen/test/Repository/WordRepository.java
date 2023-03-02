@@ -19,7 +19,7 @@ public class WordRepository {
     private final LiveData<List<Word>> allWords;
 
     public WordRepository(Application application) {
-        WordRoomDatabase db = WordRoomDatabase.getDatabase(application);
+        WordRoomDatabase db = WordRoomDatabase.Companion.invoke(application);
         wordDao = db.wordDao();
         allWords= wordDao.getAllWords();
     }
