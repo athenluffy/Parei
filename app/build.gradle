@@ -45,6 +45,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation("androidx.room:room-runtime:2.5.0")
     annotationProcessor("androidx.room:room-compiler:2.5.0")
+
+    //kotlin dependency injection
+    implementation "org.kodein.di:kodein-di-generic-jvm:7.3.1"
+    implementation "org.kodein.di:kodein-di-framework-android-x:7.18.0"
+
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
