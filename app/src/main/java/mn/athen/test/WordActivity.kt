@@ -16,10 +16,15 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import mn.athen.test.Adapter.WordListAdapter
 import mn.athen.test.Class.Word
 import mn.athen.test.viewmodel.WordViewModel
+import mn.athen.test.viewmodel.WordViewModelFactory
+import org.kodein.di.DI
+import org.kodein.di.DIAware
+import org.kodein.di.instance
 
 
-class WordActivity : AppCompatActivity() {
+class WordActivity(override val di: DI) : AppCompatActivity(),DIAware {
     val TAG ="ViewModel"
+    private val factory:WordViewModelFactory by instance()
 
     private lateinit var viewModel: WordViewModel
     private val getNewWord = registerForActivityResult(
@@ -46,7 +51,7 @@ class WordActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-        viewModel = ViewModelProvider(this)[WordViewModel::class.java]
+        viewModel = ViewModelProvider(this,factory)[WordViewModel::class.java]
 
         viewModel.words.observe(this
         ) {

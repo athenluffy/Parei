@@ -47,16 +47,14 @@ dependencies {
     annotationProcessor("androidx.room:room-compiler:2.5.0")
 
     //kotlin dependency injection
-    implementation("org.kodein:kodein-di-core:6.5.5")
-    implementation "org.kodein.di:kodein-di-generic-jvm:7.3.1"
     implementation "org.kodein.di:kodein-di-framework-android-x:7.18.0"
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.gms:play-services-auth:20.4.1'
-    implementation 'com.facebook.android:facebook-android-sdk:latest.release'
-    implementation("com.razorpay:checkout:1.6.26")
+    implementation 'com.facebook.android:facebook-android-sdk:16.0.0'
+    implementation('com.razorpay:checkout:1.6.29')
     implementation 'androidx.core:core-ktx:1.9.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

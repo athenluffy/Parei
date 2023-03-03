@@ -1,48 +1,36 @@
-package mn.athen.test.Repository;
+package mn.athen.test.repository
 
-import android.app.Application;
-import android.os.AsyncTask;
+import android.app.Application
+import androidx.lifecycle.LiveData
+import mn.athen.test.Class.Word
+import mn.athen.test.dao.WordDao
+import mn.athen.test.db.WordDatabase.Companion.invoke
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
-import androidx.lifecycle.LiveData;
+class WordRepository(application: Application?)  {
+    val allWords: LiveData<List<Word>>
 
-import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import mn.athen.test.Class.Word;
-import mn.athen.test.dao.WordDao;
-import mn.athen.test.db.WordRoomDatabase;
-
-public class WordRepository {
-
-    private static WordDao wordDao;
-    private final LiveData<List<Word>> allWords;
-
-    public WordRepository(Application application) {
-        WordRoomDatabase db = WordRoomDatabase.Companion.invoke(application);
-        wordDao = db.wordDao();
-        allWords= wordDao.getAllWords();
+    init {
+        val db = invoke(application!!)
+        wordDao = db.wordDao()
+        allWords = wordDao.allWords
     }
 
-    public LiveData<List<Word>> getAllWords()
-    {
-        return  allWords;
-    }
-
-    public void insert(Word word)
-    {
+    fun insert(word: Word?) {
         //insert to Database needs to be called async
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(()->
-                wordDao.insert(word));
 
+        service.execute { wordDao.insert(word) }
     }
-    public void delete(Word word)
-    {
-        //insert to Database needs to be called async
-        ExecutorService service = Executors.newSingleThreadExecutor();
-        service.execute(()->
-                wordDao.deleteword(word));
 
+    fun delete(word: Word?) {
+        //delete to Database needs to be called async
+
+        service.execute { wordDao.deleteword(word) }
+    }
+
+    companion object {
+        private lateinit var wordDao: WordDao
+        val service: ExecutorService = Executors.newSingleThreadExecutor()
     }
 }

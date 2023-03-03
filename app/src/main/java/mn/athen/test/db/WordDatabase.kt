@@ -10,9 +10,9 @@ import mn.athen.test.Class.Word
 import mn.athen.test.dao.WordDao
 
 @Database(entities = [Word::class], version = 1, exportSchema = false)
-abstract class WordRoomDatabase : RoomDatabase() {
+abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
-    private class PopulateDbAsync(instance: WordRoomDatabase?) : AsyncTask<Void?, Void?, Void?>() {
+    private class PopulateDbAsync(instance: WordDatabase?) : AsyncTask<Void?, Void?, Void?>() {
         private val wordDao: WordDao
         var words = arrayOf("Naruto", "Itachi", "Jiraiya")
 
@@ -32,30 +32,31 @@ abstract class WordRoomDatabase : RoomDatabase() {
     }
 
     companion object {
-        private var instance: WordRoomDatabase? = null
-        private val LOCK =Any()
+        private var instance: WordDatabase? = null
+        private val LOCK = Any()
         private val callback: Callback = object : Callback() {
             override fun onOpen(db: SupportSQLiteDatabase) {
                 super.onOpen(db)
                 PopulateDbAsync(instance).execute()
             }
         }
-        operator fun invoke(context:Context)= instance?: synchronized(LOCK){
-            instance?: buildDb(context).also {
-                instance=it
+
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDb(context).also {
+                instance = it
             }
         }
 
         @JvmStatic
         private fun buildDb(context: Context) =
 
-                       Room.databaseBuilder(
-                            context.applicationContext,
-                            WordRoomDatabase::class.java, "word_database"
-                        )
-                            .addCallback(callback)
-                            .fallbackToDestructiveMigration()
-                            .build()
+            Room.databaseBuilder(
+                context.applicationContext,
+                WordDatabase::class.java, "word_database"
+            )
+                .addCallback(callback)
+                .fallbackToDestructiveMigration()
+                .build()
 
     }
 }
