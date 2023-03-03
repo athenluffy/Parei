@@ -55,7 +55,7 @@ abstract class WordDatabase : RoomDatabase() {
                 WordDatabase::class.java, "word_database"
             )
                 .addCallback(callback)
-                .fallbackToDestructiveMigration()
+
                 .build()
 
     }

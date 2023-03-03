@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -44,7 +45,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     implementation("androidx.room:room-runtime:2.5.0")
-    annotationProcessor("androidx.room:room-compiler:2.5.0")
+    implementation "androidx.room:room-ktx:2.5.0"
+    kapt ("androidx.room:room-compiler:2.5.0")
 
     //kotlin dependency injection
     implementation "org.kodein.di:kodein-di-framework-android-x:7.18.0"

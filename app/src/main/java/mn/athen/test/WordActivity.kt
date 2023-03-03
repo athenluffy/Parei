@@ -19,12 +19,15 @@ import mn.athen.test.viewmodel.WordViewModel
 import mn.athen.test.viewmodel.WordViewModelFactory
 import org.kodein.di.DI
 import org.kodein.di.DIAware
+import org.kodein.di.android.closestDI
 import org.kodein.di.instance
 
 
-class WordActivity(override val di: DI) : AppCompatActivity(),DIAware {
-    val TAG ="ViewModel"
-    private val factory:WordViewModelFactory by instance()
+class WordActivity : AppCompatActivity(),DIAware {
+    private val TAG ="ViewModel"
+    override val di: DI by closestDI()
+
+     private val factory:WordViewModelFactory by instance()
 
     private lateinit var viewModel: WordViewModel
     private val getNewWord = registerForActivityResult(
@@ -44,11 +47,13 @@ class WordActivity(override val di: DI) : AppCompatActivity(),DIAware {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.content_main)
+
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val fab = findViewById<FloatingActionButton>(R.id.fab)
         val adapter = WordListAdapter(this.layoutInflater,null)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
 
 
         viewModel = ViewModelProvider(this,factory)[WordViewModel::class.java]
@@ -100,6 +105,9 @@ class WordActivity(override val di: DI) : AppCompatActivity(),DIAware {
 
 
     }
+
+
+
 
 /*    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
