@@ -8,6 +8,9 @@
     <string name="hint">Enter Word</string>
     <string name="save">Save</string>
     <string name="save_err">Please Enter a Word</string>
+    <string name="enter_otp">Enter OTP</string>
+    <string name="confirm">CONFIRM</string>
+    <string name="resend_otp">RESEND OTP</string>
 
 
 </resources>

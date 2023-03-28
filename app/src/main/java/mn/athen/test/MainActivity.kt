@@ -3,16 +3,24 @@ package mn.athen.test
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import mn.athen.test.Class.Word
+
 //keytool -exportcert -alias androiddebugkey -keystore "C:\Users\DELL\.android\debug.keystore" | "C:\openssl\bin\openssl" sha1 -binary | "C:\openssl\bin\openssl" base64
 //openssl 0.9e x 64
 class MainActivity : AppCompatActivity() {
+    companion object {
+        const val OTP_REAL = "mn.athen.test.OTP_REAL"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         loginbutton.registerCallback(callbackManager,object: FacebookCallback<LoginResult>
         {
             override fun onSuccess(result: LoginResult) {
-                Log.i("Success", result.accessToken.toString());
+                Log.i("Success", result.accessToken.toString())
             }
 
             override fun onCancel() {
@@ -29,13 +37,29 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onError(error: FacebookException) {
-                Log.i("Error", error.message.toString());
+                Log.i("Error", error.message.toString())
             }
         })
     }
 
-    fun sendotp() {
-        Toast.makeText(this,"Otp Send",Toast.LENGTH_LONG).show()
-        startActivity(Intent(this,Otpverify::class.java))
+    fun sendotp(v:View) {
+
+        val intent = Intent(this, Otpverify::class.java)
+        //intent.putExtra(OTP_REAL,)
+        verifyOtp.launch(intent)
     }
+
+    private val verifyOtp = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) {
+        if (it.resultCode == RESULT_OK) {
+            val word = it.data!!.getStringExtra(Otpverify.OTP_REPLY)!!
+
+        } else {
+            Toast.makeText(applicationContext, "Please Try Again", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+
 }
