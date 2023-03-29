@@ -10,6 +10,7 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/item_img"
             android:layout_width="169dp"
             android:layout_height="169dp"
             android:layout_margin="8dp"
@@ -22,12 +23,14 @@
             >
 
             <TextView
+                android:id="@+id/item_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Chicken Pickle 230g" />
 
             <RatingBar
+                android:id="@+id/item_star"
                 style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

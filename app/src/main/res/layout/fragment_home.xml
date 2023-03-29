@@ -5,9 +5,13 @@
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment">
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Home Fragment" />
+        tools:listitem="@layout/pickle_item"
+        android:id="@+id/pickle_rv"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </FrameLayout>
