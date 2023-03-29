@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Landing">
-    <com.google.android.material.button.MaterialButton
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Pay Now"
-        android:id="@+id/btnPay"/>
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/user_nav" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
