@@ -1,15 +1,17 @@
 package mn.athen.test.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import mn.athen.test.Adapter.ItemListAdapter
-import mn.athen.test.Adapter.WordListAdapter
 import mn.athen.test.Class.Item
+import mn.athen.test.Interface.ItemClickListener
 import mn.athen.test.R
 import mn.athen.test.databinding.FragmentHomeBinding
 
@@ -21,6 +23,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewModel: HomeViewModel
     private lateinit var binding : FragmentHomeBinding
+    private lateinit var itemClickListener: ItemClickListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +40,16 @@ class HomeFragment : Fragment() {
         val list: MutableList<Item> = ArrayList()
         for (i in 1..5)
         {
-            val item = Item("Chicken Pickle$i", R.drawable.splash, i)
+            val item = Item(i,"Chicken Pickle$i", R.drawable.splash, i)
             list.add(item)
         }
-        val adapter = ItemListAdapter(this.layoutInflater, list)
+        itemClickListener = object : ItemClickListener {
+            override fun onclick(position: Int, item: Item) {
+                Toast.makeText(context,item.name,Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_fragmentHome_to_itemFragment)
+            }
+        }
+        val adapter = ItemListAdapter(this.layoutInflater, list,itemClickListener)
         binding.pickleRv.adapter = adapter
         binding.pickleRv.layoutManager= LinearLayoutManager(context)
 

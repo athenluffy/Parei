@@ -13,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import mn.athen.test.Class.Item;
+import mn.athen.test.Interface.ItemClickListener;
 import mn.athen.test.R;
 
 public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemViewholder> {
 
     private final LayoutInflater layoutInflater;
     private List<Item> items;
+    ItemClickListener itemClickListener;
 
-    public ItemListAdapter(LayoutInflater layoutInflater, List<Item> items) {
+    public ItemListAdapter(LayoutInflater layoutInflater, List<Item> items,ItemClickListener itemClickListener) {
         this.layoutInflater = layoutInflater;
         this.items = items;
+        this.itemClickListener = itemClickListener;
+
     }
 
     @NonNull
@@ -41,13 +45,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             holder.name.setText(item.getName());
             holder.img.setImageResource(item.getImg());
             holder.star.setRating(item.getStar());
+            holder.itemView.setOnClickListener((l)->
+            {
+                itemClickListener.onclick(position,items.get(position));
+
+            });
 
         }
-    }
-    public void setWords(List<Item> items)
-    {
-        this.items=items;
-        notifyDataSetChanged();
 
     }
 
