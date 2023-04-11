@@ -12,11 +12,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="81sp"
         android:layout_marginHorizontal="9sp"
-        android:hint="Enter OTP">
+        android:hint="@string/enter_otp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/txtOtp"
+            android:inputType="number"
+            android:maxLength="6"
             android:textColorHint="#616161"
             tools:ignore="TextContrastCheck" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -27,7 +30,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="CONFIRM"
+        android:text="@string/confirm"
         android:onClick="confirm"/>
     <com.google.android.material.button.MaterialButton
         android:layout_marginTop="16sp"
@@ -35,6 +38,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_gravity="center"
-        android:text="RESEND OTP"/>
+        android:text="@string/resend_otp"/>
 
 </LinearLayout>
