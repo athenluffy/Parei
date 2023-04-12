@@ -6,12 +6,15 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import mn.athen.test.Class.Word
+import mn.athen.test.classes.Item
+import mn.athen.test.classes.Word
+import mn.athen.test.dao.ItemDao
 import mn.athen.test.dao.WordDao
 
-@Database(entities = [Word::class], version = 1, exportSchema = false)
+@Database(entities = [Word::class,Item::class], version = 1, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
+    abstract fun ItemDao(): ItemDao
     private class PopulateDbAsync(instance: WordDatabase?) : AsyncTask<Void?, Void?, Void?>() {
         private val wordDao: WordDao
         var words = arrayOf("Naruto", "Itachi", "Jiraiya")

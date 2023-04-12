@@ -1,6 +1,6 @@
 package mn.athen.test.Interface
 
-import mn.athen.test.Class.Item
+import mn.athen.test.classes.Item
 
 interface ItemClickListener {
 

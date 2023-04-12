@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import mn.athen.test.R
+import mn.athen.test.viewmodel.CartViewModel
 
 class CartFragment : Fragment() {
 

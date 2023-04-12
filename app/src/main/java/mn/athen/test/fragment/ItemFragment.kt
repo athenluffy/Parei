@@ -1,19 +1,17 @@
 package mn.athen.test.fragment
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import mn.athen.test.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import mn.athen.test.databinding.FragmentItemBinding
+import mn.athen.test.viewmodel.ItemViewModel
 
 class ItemFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = ItemFragment()
-    }
+    companion object;
 
     private lateinit var viewModel: ItemViewModel
     private lateinit var binding: FragmentItemBinding
@@ -21,7 +19,7 @@ class ItemFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentItemBinding.inflate(inflater, container, false)
         return binding.root
     }

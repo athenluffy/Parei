@@ -9,7 +9,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import mn.athen.test.Class.Word;
+import mn.athen.test.classes.Word;
 
 @Dao
 public interface WordDao {
