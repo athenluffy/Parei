@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import mn.athen.test.Adapter.WordListAdapter
-import mn.athen.test.Class.Word
+import mn.athen.test.classes.Word
 import mn.athen.test.viewmodel.WordViewModel
 import mn.athen.test.viewmodel.WordViewModelFactory
 import org.kodein.di.DI

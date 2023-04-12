@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.util.List;
 
-import mn.athen.test.Class.Item;
+import mn.athen.test.classes.Item;
 import mn.athen.test.Interface.ItemClickListener;
 import mn.athen.test.R;
 
@@ -43,7 +45,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         {
             Item item = items.get(position);
             holder.name.setText(item.getName());
-            holder.img.setImageResource(item.getImg());
+            //holder.img.setImageResource(item.getImg());
             holder.star.setRating(item.getStar());
             holder.itemView.setOnClickListener((l)->
             {
@@ -60,6 +62,11 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         if(items!=null)
             return items.size();
         return 0;
+    }
+
+    public void setItems(@Nullable List<Item> it) {
+        this.items=it;
+        notifyDataSetChanged();
     }
 
     static class ItemViewholder extends RecyclerView.ViewHolder

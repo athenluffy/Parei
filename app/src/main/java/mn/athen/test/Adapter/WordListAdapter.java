@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-import mn.athen.test.Class.Word;
+import mn.athen.test.classes.Word;
 import mn.athen.test.R;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.WordViewholder> {

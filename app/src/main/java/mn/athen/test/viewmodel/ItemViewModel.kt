@@ -1,7 +1,7 @@
-package mn.athen.test.fragment
+package mn.athen.test.viewmodel
 
 import androidx.lifecycle.ViewModel
 
-class CartViewModel : ViewModel() {
+class ItemViewModel() : ViewModel() {
     // TODO: Implement the ViewModel
 }
