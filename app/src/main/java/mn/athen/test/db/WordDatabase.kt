@@ -14,13 +14,17 @@ import mn.athen.test.dao.WordDao
 @Database(entities = [Word::class,Item::class], version = 1, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
-    abstract fun ItemDao(): ItemDao
+    abstract fun itemDao(): ItemDao
     private class PopulateDbAsync(instance: WordDatabase?) : AsyncTask<Void?, Void?, Void?>() {
         private val wordDao: WordDao
+        private val itemDao: ItemDao
         var words = arrayOf("Naruto", "Itachi", "Jiraiya")
+        var items = Item(1,"Chicken Pickle","https://goo.gl/gEgYUd",4.9F)
+
 
         init {
             wordDao = instance!!.wordDao()
+            itemDao = instance.itemDao()
         }
 
         @Deprecated("Deprecated in Java")
@@ -29,6 +33,12 @@ abstract class WordDatabase : RoomDatabase() {
             for (s in words) {
                 val word = Word(s)
                 wordDao.insert(word)
+            }
+            for (i in 1..5)
+            {
+                val item = Item(i,"Chicken Pickle$i","https://goo.gl/gEgYUd", 3.5F)
+                itemDao.insert(item)
+
             }
             return null
         }

@@ -1,5 +1,6 @@
 package mn.athen.test.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -23,11 +26,13 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     private final LayoutInflater layoutInflater;
     private List<Item> items;
     ItemClickListener itemClickListener;
+    final Context context;
 
-    public ItemListAdapter(LayoutInflater layoutInflater, List<Item> items,ItemClickListener itemClickListener) {
+    public ItemListAdapter(LayoutInflater layoutInflater, List<Item> items,ItemClickListener itemClickListener,Context context) {
         this.layoutInflater = layoutInflater;
         this.items = items;
         this.itemClickListener = itemClickListener;
+        this.context = context;
 
     }
 
@@ -45,7 +50,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
         {
             Item item = items.get(position);
             holder.name.setText(item.getName());
-            //holder.img.setImageResource(item.getImg());
+            Glide.with(context).load(item.getImg()).into(holder.img);
             holder.star.setRating(item.getStar());
             holder.itemView.setOnClickListener((l)->
             {

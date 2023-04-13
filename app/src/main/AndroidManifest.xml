@@ -59,7 +59,14 @@
         </activity>
         <activity
             android:name=".Landing"
-            android:exported="false" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name=".Otpverify"
             android:exported="false" />
@@ -67,11 +74,7 @@
             android:name=".Splash"
             android:exported="true"
             android:theme="@style/Theme.PareiFoods.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
