@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import mn.athen.test.Adapter.ItemListAdapter
@@ -15,20 +14,18 @@ import mn.athen.test.R
 import mn.athen.test.classes.Item
 import mn.athen.test.databinding.FragmentHomeBinding
 import mn.athen.test.viewmodel.HomeViewModel
-import mn.athen.test.viewmodel.HomeViewModelFactory
 import org.kodein.di.*
+import org.kodein.di.android.x.closestDI
+import org.kodein.di.android.x.viewmodel.viewModel
 
 class HomeFragment : Fragment(),DIAware {
 
-    override  val  di: DI = DI.lazy {
 
-    }
-    private lateinit var viewModel: HomeViewModel
+    override  val  di: DI by closestDI()
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : FragmentHomeBinding
     private lateinit var itemClickListener: ItemClickListener
 
-
-    private val factory: HomeViewModelFactory by instance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +39,7 @@ class HomeFragment : Fragment(),DIAware {
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
+
 
 
 
