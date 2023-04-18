@@ -3,57 +3,33 @@ package mn.athen.test
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
+import mn.athen.test.databinding.ActivityLandingBinding
 import org.json.JSONException
 import org.json.JSONObject
 
 
 class Landing : AppCompatActivity(),PaymentResultWithDataListener  {
+
+    private lateinit var binding:ActivityLandingBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_landing)
-        val btmNavigation:BottomNavigationView = findViewById(R.id.landingBtmNavigation)
-        val btnpay: MaterialButton = findViewById(R.id.btnPay)
-        Checkout.preload(applicationContext)
-        btnpay.setOnClickListener {
-            run {
-                pay()
-            }
-        }
+        binding = ActivityLandingBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
 
 
-
-
-
-
-
-
-    btmNavigation.setOnItemSelectedListener { item->
-           when(item.itemId)
-           {
-               R.id.home -> {
-                   Toast.makeText(this,"Home",Toast.LENGTH_SHORT).show()
-                   // Respond to navigation item 1 click
-                   true
-               }
-               R.id.cart -> {
-                   Toast.makeText(this,"Cart",Toast.LENGTH_SHORT).show()
-                   // Respond to navigation item 1 click
-                   true
-               }
-               R.id.account -> {
-                   Toast.makeText(this,"Profile",Toast.LENGTH_SHORT).show()
-                   // Respond to navigation item 1 click
-                   true
-               }
-               else -> false
-           }
-       }
-
+       // Checkout.preload(applicationContext)
+        binding.landingBtmNavigation.setupWithNavController(navController)
 
     }
 
@@ -65,10 +41,6 @@ class Landing : AppCompatActivity(),PaymentResultWithDataListener  {
         Toast.makeText(this,"Failed",Toast.LENGTH_LONG).show()
     }
 
-    fun gg(a:Int,b:Int): Int
-    {
-        return a+b
-    }
     fun pay()
     {
         val co = Checkout()
