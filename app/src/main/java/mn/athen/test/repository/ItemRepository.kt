@@ -7,18 +7,18 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 class ItemRepository(private val db:WordDatabase)  {
-    val allItems: LiveData<List<Item>> = db.ItemDao().allItems
+    val allItems: LiveData<List<Item>> = db.itemDao().allItems
 
     fun insert(item: Item?) {
         //insert to Database needs to be called async
 
-        service.execute { db.ItemDao().insert(item) }
+        service.execute { db.itemDao().insert(item) }
     }
 
     fun delete() {
         //delete to Database needs to be called async
 
-        service.execute { db.ItemDao().deleteAll() }
+        service.execute { db.itemDao().deleteAll() }
     }
 
     companion object {

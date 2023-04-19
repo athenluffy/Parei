@@ -1,52 +1,53 @@
 package mn.athen.test.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import mn.athen.test.Adapter.ItemListAdapter
-import mn.athen.test.classes.Item
 import mn.athen.test.Interface.ItemClickListener
 import mn.athen.test.R
+import mn.athen.test.classes.Item
 import mn.athen.test.databinding.FragmentHomeBinding
 import mn.athen.test.viewmodel.HomeViewModel
-import mn.athen.test.viewmodel.ItemsViewModelFactory
-import mn.athen.test.viewmodel.WordViewModel
-import mn.athen.test.viewmodel.WordViewModelFactory
-import org.kodein.di.DI
-import org.kodein.di.DIAware
-import org.kodein.di.android.closestDI
-import org.kodein.di.instance
+import org.kodein.di.*
+import org.kodein.di.android.x.closestDI
+import org.kodein.di.android.x.viewmodel.viewModel
 
 class HomeFragment : Fragment(),DIAware {
 
-    companion object;
-    override val di: DI by lazy { (context as DIAware).di }
-    private lateinit var viewModel: HomeViewModel
+
+
+    override  val  di: DI by closestDI()
+    private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : FragmentHomeBinding
     private lateinit var itemClickListener: ItemClickListener
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
 
-    private val factory: ItemsViewModelFactory by instance()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding=FragmentHomeBinding.inflate(inflater,container,false)
+
         return binding.root
     }
 
     @Deprecated("Deprecated in Java")
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this, factory)[HomeViewModel::class.java]
-        val list: MutableList<Item> = ArrayList()
+
+
+
 
         itemClickListener = object : ItemClickListener {
             override fun onclick(position: Int, item: Item) {
@@ -54,7 +55,7 @@ class HomeFragment : Fragment(),DIAware {
                 findNavController().navigate(R.id.action_fragmentHome_to_itemFragment)
             }
         }
-        val adapter = ItemListAdapter(this.layoutInflater, null,itemClickListener)
+        val adapter = ItemListAdapter(layoutInflater, null,itemClickListener,context)
         binding.pickleRv.adapter = adapter
         binding.pickleRv.layoutManager= LinearLayoutManager(context)
 
