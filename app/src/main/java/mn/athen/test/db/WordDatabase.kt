@@ -19,7 +19,13 @@ abstract class WordDatabase : RoomDatabase() {
         private val wordDao: WordDao
         private val itemDao: ItemDao
         var words = arrayOf("Naruto", "Itachi", "Jiraiya")
-        var items = Item(1,"Chicken Pickle","https://goo.gl/gEgYUd",4.9F)
+        var items = arrayOf(
+            "https://www.bigbasket.com/media/uploads/p/xxl/40173098_3-eastern-chicken-pickle.jpg",
+            "https://m.media-amazon.com/images/I/61i8XttB1aL._SY679_.jpg",
+            "https://cdn.shopify.com/s/files/1/0636/4892/3869/products/NEOriginsSmokedChickenPicklePR01.jpg?v=1680069610&width=1946",
+            "https://mirchi.com/os/cdn/content/images/chicken%20pickle%20boovi%20foods_medium_0898657.webp",
+            "https://i0.wp.com/tressiafoods.com/wp-content/uploads/2021/01/CHICKEN-PICKLE_20220207_03.jpg?fit=1500%2C1500&ssl=1"
+        )
 
 
         init {
@@ -36,7 +42,7 @@ abstract class WordDatabase : RoomDatabase() {
             }
             for (i in 1..5)
             {
-                val item = Item(i,"Chicken Pickle$i","https://goo.gl/gEgYUd", 3.5F)
+                val item = Item(i,"Chicken Pickle$i", items[i-1], 3.5F)
                 itemDao.insert(item)
 
             }
