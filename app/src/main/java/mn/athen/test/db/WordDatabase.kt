@@ -11,7 +11,7 @@ import mn.athen.test.classes.Word
 import mn.athen.test.dao.ItemDao
 import mn.athen.test.dao.WordDao
 
-@Database(entities = [Word::class,Item::class], version = 1, exportSchema = false)
+@Database(entities = [Word::class,Item::class], version = 2, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
     abstract fun itemDao(): ItemDao
@@ -68,6 +68,7 @@ abstract class WordDatabase : RoomDatabase() {
                 WordDatabase::class.java, "word_database"
             )
                 .addCallback(callback)
+                .fallbackToDestructiveMigration()
 
                 .build()
 

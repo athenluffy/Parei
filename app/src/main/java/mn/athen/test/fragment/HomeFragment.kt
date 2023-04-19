@@ -1,5 +1,6 @@
 package mn.athen.test.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,11 +22,16 @@ import org.kodein.di.android.x.viewmodel.viewModel
 class HomeFragment : Fragment(),DIAware {
 
 
+
     override  val  di: DI by closestDI()
     private val viewModel: HomeViewModel by viewModel()
     private lateinit var binding : FragmentHomeBinding
     private lateinit var itemClickListener: ItemClickListener
 
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +55,7 @@ class HomeFragment : Fragment(),DIAware {
                 findNavController().navigate(R.id.action_fragmentHome_to_itemFragment)
             }
         }
-        val adapter = ItemListAdapter(this.layoutInflater, null,itemClickListener,context)
+        val adapter = ItemListAdapter(layoutInflater, null,itemClickListener,context)
         binding.pickleRv.adapter = adapter
         binding.pickleRv.layoutManager= LinearLayoutManager(context)
 
