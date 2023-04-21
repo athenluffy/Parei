@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
     id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
+
 }
 
 android {
@@ -51,6 +53,12 @@ dependencies {
     //kotlin dependency injection
     implementation "org.kodein.di:kodein-di-framework-android-x:7.20.1"
     implementation "org.kodein.di:kodein-di-framework-android-x-viewmodel:7.20.1"
+
+    //Navigation Components
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
+
+    //Safe Args
 
 
     //Glide

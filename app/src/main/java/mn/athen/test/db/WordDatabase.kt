@@ -42,7 +42,7 @@ abstract class WordDatabase : RoomDatabase() {
             }
             for (i in 1..5)
             {
-                val item = Item(i,"Chicken Pickle$i", items[i-1], 3.5F)
+                val item = Item(i,"Chicken Pickle$i", items[i-1], 0.5F+i)
                 itemDao.insert(item)
 
             }

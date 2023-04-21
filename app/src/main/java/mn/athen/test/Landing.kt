@@ -3,7 +3,12 @@ package mn.athen.test
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
@@ -30,8 +35,14 @@ class Landing : AppCompatActivity(),PaymentResultWithDataListener  {
 
        // Checkout.preload(applicationContext)
         binding.landingBtmNavigation.setupWithNavController(navController)
-
+       setupActionBarWithNavController(navController, AppBarConfiguration(navController.graph))
     }
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(AppBarConfiguration(navController.graph))
+                || super.onSupportNavigateUp()
+    }
+
 
     override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
         Toast.makeText(this,"Success",Toast.LENGTH_LONG).show()

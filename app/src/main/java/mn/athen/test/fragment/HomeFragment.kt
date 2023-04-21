@@ -28,11 +28,6 @@ class HomeFragment : Fragment(),DIAware {
     private lateinit var binding : FragmentHomeBinding
     private lateinit var itemClickListener: ItemClickListener
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,7 +47,9 @@ class HomeFragment : Fragment(),DIAware {
         itemClickListener = object : ItemClickListener {
             override fun onclick(position: Int, item: Item) {
                 Toast.makeText(context,item.name,Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_fragmentHome_to_itemFragment)
+
+                val action = HomeFragmentDirections.actionFragmentHomeToItemFragment().setItemId(item.id)
+                findNavController().navigate(action)
             }
         }
         val adapter = ItemListAdapter(layoutInflater, null,itemClickListener,context)

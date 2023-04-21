@@ -19,6 +19,7 @@ class HomeViewModel(app:Application) : AndroidViewModel(app), DIAware {
     override val di:DI by closestDI()
     private val itemRepository : ItemRepository by instance()
     val items: LiveData<List<Item>> = itemRepository.allItems
+    var item: LiveData<Item>? = null
 
     fun insert(item: Item) {
         service.execute{itemRepository.insert(item)}
@@ -27,6 +28,12 @@ class HomeViewModel(app:Application) : AndroidViewModel(app), DIAware {
     fun deleteall() {
         service.execute{itemRepository.delete()}
     }
+
+    fun setItem(itemId: Int) {
+        item = itemRepository.findone(itemId)
+
+    }
+
     companion object {
 
         val service: ExecutorService = Executors.newSingleThreadExecutor()

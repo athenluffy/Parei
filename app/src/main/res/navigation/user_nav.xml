@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/fragmentHome"
         android:name="mn.athen.test.fragment.HomeFragment"
-        android:label="fragment_fragment_home"
+        android:label="Parei Foods"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_fragmentHome_to_profileFragment"
@@ -18,17 +18,23 @@
             app:destination="@id/cartFragment" />
         <action
             android:id="@+id/action_fragmentHome_to_itemFragment"
-            app:destination="@id/itemFragment" />
+            app:destination="@id/itemFragment">
+            <argument
+                android:name="item_id"
+                app:argType="integer"
+                android:defaultValue="1" />
+
+        </action>
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
         android:name="mn.athen.test.fragment.CartFragment"
-        android:label="fragment_cart"
+        android:label="Cart"
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="mn.athen.test.fragment.ProfileFragment"
-        android:label="fragment_profile"
+        android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <action
             android:id="@+id/action_profileFragment_to_splash"
@@ -37,7 +43,7 @@
     <fragment
         android:id="@+id/itemFragment"
         android:name="mn.athen.test.fragment.ItemFragment"
-        android:label="fragment_item"
+        android:label="Parei Foods"
         tools:layout="@layout/fragment_item" >
         <action
             android:id="@+id/action_itemFragment_to_profileFragment"
@@ -49,6 +55,10 @@
         <action
             android:id="@+id/action_itemFragment_to_profileFragment2"
             app:destination="@id/profileFragment" />
+        <argument
+            android:name="item_id"
+            app:argType="integer"
+            android:defaultValue="1" />
     </fragment>
     <activity
         android:id="@+id/splash"

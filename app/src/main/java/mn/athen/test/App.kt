@@ -5,6 +5,7 @@ import mn.athen.test.db.WordDatabase
 import mn.athen.test.repository.ItemRepository
 import mn.athen.test.repository.WordRepository
 import mn.athen.test.viewmodel.HomeViewModel
+import mn.athen.test.viewmodel.ItemViewModel
 import mn.athen.test.viewmodel.WordViewModelFactory
 import org.kodein.di.*
 import org.kodein.di.android.x.androidXModule
@@ -19,6 +20,7 @@ class App : Application(),DIAware
         bind{singleton { WordRepository(instance()) }}
         bind{singleton { ItemRepository(instance()) }}
         bindProvider { HomeViewModel(instance()) }
+        bindProvider { ItemViewModel(instance()) }
         bind{provider { WordViewModelFactory(instance()) }}
 
 
