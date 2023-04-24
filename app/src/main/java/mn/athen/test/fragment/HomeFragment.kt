@@ -46,8 +46,6 @@ class HomeFragment : Fragment(),DIAware {
 
         itemClickListener = object : ItemClickListener {
             override fun onclick(position: Int, item: Item) {
-                Toast.makeText(context,item.name,Toast.LENGTH_LONG).show()
-
                 val action = HomeFragmentDirections.actionFragmentHomeToItemFragment().setItemId(item.id)
                 findNavController().navigate(action)
             }
