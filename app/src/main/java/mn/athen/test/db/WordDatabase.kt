@@ -13,7 +13,7 @@ import mn.athen.test.dao.CartDao
 import mn.athen.test.dao.ItemDao
 import mn.athen.test.dao.WordDao
 
-@Database(entities = [Word::class,Item::class,Cart::class], version = 2, exportSchema = false)
+@Database(entities = [Word::class,Item::class,Cart::class], version =  3, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
     abstract fun itemDao(): ItemDao

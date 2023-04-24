@@ -4,9 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import mn.athen.test.classes.Cart
-import mn.athen.test.classes.Item
 import mn.athen.test.repository.CartRepository
-import mn.athen.test.repository.ItemRepository
 import org.kodein.di.DI
 import org.kodein.di.DIAware
 import org.kodein.di.android.x.closestDI

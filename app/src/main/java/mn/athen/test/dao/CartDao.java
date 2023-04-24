@@ -28,10 +28,10 @@ public interface CartDao {
 
 
     //minAge: Int
-    @Query("SELECT * from tb_items where id = :id ")
+    @Query("SELECT * from tb_cart where id = :id ")
     LiveData<Cart> find_one(int id);
 
-    @Query("DELETE from tb_items where id = :id ")
+    @Query("DELETE from tb_cart where id = :id ")
     void delete_one(int id);
 
 

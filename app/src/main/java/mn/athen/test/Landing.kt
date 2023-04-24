@@ -45,7 +45,10 @@ class Landing : AppCompatActivity(),PaymentResultWithDataListener  {
 
         cartviewModel.items.observe(this
         ) {
+            if(it.isNotEmpty())
             binding.landingBtmNavigation.getOrCreateBadge(R.id.cartFragment).number = it.size
+            else
+                binding.landingBtmNavigation.removeBadge(R.id.cartFragment)
         }
 
         setupActionBarWithNavController(navController, AppBarConfiguration(navController.graph))
