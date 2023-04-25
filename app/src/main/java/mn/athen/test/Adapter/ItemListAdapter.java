@@ -52,11 +52,9 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             holder.name.setText(item.getName());
             Glide.with(context).load(item.getImg()).into(holder.img);
             holder.star.setRating(item.getStar());
+            holder.price.setText(item.getPrice());
             holder.itemView.setOnClickListener((l)->
-            {
-                itemClickListener.onclick(position,items.get(position));
-
-            });
+                    itemClickListener.onclick(position,items.get(position)));
 
         }
 
@@ -77,6 +75,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
     static class ItemViewholder extends RecyclerView.ViewHolder
     {
         TextView name;
+        TextView price;
         ImageView img;
         RatingBar star;
 
@@ -85,6 +84,8 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             name = itemView.findViewById(R.id.item_name);
             img = itemView.findViewById(R.id.item_img);
             star = itemView.findViewById(R.id.item_star);
+
+            price=itemView.findViewById(R.id.tv_itemPrice);
         }
     }
 }

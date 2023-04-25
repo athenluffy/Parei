@@ -43,6 +43,7 @@ class ItemFragment : Fragment(),DIAware {
            {
                binding.tvItemFragment.text=it.name
                context?.let { context -> Glide.with(context).load(it.img).into(binding.imgViewImg) }
+               binding.tvItemName.text=it.name
            }
 
         }

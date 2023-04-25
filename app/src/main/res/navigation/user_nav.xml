@@ -30,7 +30,11 @@
         android:id="@+id/cartFragment"
         android:name="mn.athen.test.fragment.CartFragment"
         android:label="Cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="mn.athen.test.fragment.ProfileFragment"
@@ -59,10 +63,23 @@
             android:name="item_id"
             app:argType="integer"
             android:defaultValue="1" />
+        <action
+            android:id="@+id/action_itemFragment_to_checkoutFragment"
+            app:destination="@id/checkoutFragment" />
     </fragment>
     <activity
         android:id="@+id/splash"
         android:name="mn.athen.test.Splash"
         android:label="activity_splash"
         tools:layout="@layout/activity_splash" />
+    <fragment
+        android:id="@+id/checkoutFragment"
+        android:name="mn.athen.test.fragment.CheckoutFragment"
+        android:label="fragment_checkout"
+        tools:layout="@layout/fragment_checkout" >
+        <action
+            android:id="@+id/action_checkoutFragment_to_placeholder"
+            app:destination="@id/placeholder" />
+    </fragment>
+    <fragment android:id="@+id/placeholder" />
 </navigation>
