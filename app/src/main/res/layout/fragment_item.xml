@@ -47,17 +47,17 @@
         android:orientation="horizontal"
         android:layout_marginBottom="4dp"
         android:padding="4dp">
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_addCart"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            tools:text="Add to CART"
+            android:text="@string/add_cart"
             style="?android:attr/buttonBarButtonStyle" />
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBuyNow"
             android:layout_weight="1"
-            tools:text="BUY NOW"
+            android:text="@string/buy_now"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="?android:attr/buttonBarButtonStyle" />

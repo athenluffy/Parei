@@ -52,7 +52,7 @@ public class ItemListAdapter extends RecyclerView.Adapter<ItemListAdapter.ItemVi
             holder.name.setText(item.getName());
             Glide.with(context).load(item.getImg()).into(holder.img);
             holder.star.setRating(item.getStar());
-            holder.price.setText(item.getName());
+            holder.price.setText(String.valueOf(item.getPrice()));
             holder.itemView.setOnClickListener((l)->
                     itemClickListener.onclick(position,items.get(position)));
 
