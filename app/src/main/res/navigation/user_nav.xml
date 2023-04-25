@@ -66,6 +66,9 @@
         <action
             android:id="@+id/action_itemFragment_to_checkoutFragment"
             app:destination="@id/checkoutFragment" />
+        <action
+            android:id="@+id/action_itemFragment_self"
+            app:destination="@id/itemFragment" />
     </fragment>
     <activity
         android:id="@+id/splash"

@@ -48,12 +48,14 @@
         android:layout_marginBottom="4dp"
         android:padding="4dp">
         <Button
+            android:id="@+id/btn_addCart"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="match_parent"
             tools:text="Add to CART"
             style="?android:attr/buttonBarButtonStyle" />
         <Button
+            android:id="@+id/btnBuyNow"
             android:layout_weight="1"
             tools:text="BUY NOW"
             android:layout_width="wrap_content"
