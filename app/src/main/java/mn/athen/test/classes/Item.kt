@@ -12,4 +12,6 @@ class Item(
     @field:ColumnInfo(name="img")
     val img:String,
     @field:ColumnInfo(name="rating")
-    val star:Float)
+    val star:Float,
+    @field:ColumnInfo(name="price")
+    val price:Int)

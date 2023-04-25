@@ -6,15 +6,19 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import mn.athen.test.classes.Cart
 import mn.athen.test.classes.Item
 import mn.athen.test.classes.Word
+import mn.athen.test.dao.CartDao
 import mn.athen.test.dao.ItemDao
 import mn.athen.test.dao.WordDao
 
-@Database(entities = [Word::class,Item::class], version = 2, exportSchema = false)
+@Database(entities = [Word::class,Item::class,Cart::class], version =  4, exportSchema = false)
 abstract class WordDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
     abstract fun itemDao(): ItemDao
+
+    abstract fun cartDao(): CartDao
     private class PopulateDbAsync(instance: WordDatabase?) : AsyncTask<Void?, Void?, Void?>() {
         private val wordDao: WordDao
         private val itemDao: ItemDao
@@ -31,6 +35,7 @@ abstract class WordDatabase : RoomDatabase() {
         init {
             wordDao = instance!!.wordDao()
             itemDao = instance.itemDao()
+
         }
 
         @Deprecated("Deprecated in Java")
@@ -42,7 +47,7 @@ abstract class WordDatabase : RoomDatabase() {
             }
             for (i in 1..5)
             {
-                val item = Item(i,"Chicken Pickle$i", items[i-1], 3.5F)
+                val item = Item(i,"Chicken Pickle$i", items[i-1], 0.5F+i,50*i)
                 itemDao.insert(item)
 
             }

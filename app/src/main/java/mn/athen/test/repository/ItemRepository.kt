@@ -15,6 +15,12 @@ class ItemRepository(private val db:WordDatabase)  {
         service.execute { db.itemDao().insert(item) }
     }
 
+    fun findone(id:Int): LiveData<Item>? {
+        //insert to Database needs to be called async
+
+        return db.itemDao().find_one(id)
+    }
+
     fun delete() {
         //delete to Database needs to be called async
 

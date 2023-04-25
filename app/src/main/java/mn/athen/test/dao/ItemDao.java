@@ -22,6 +22,9 @@ public interface ItemDao {
     @Query("SELECT * from tb_items ORDER by id ASC")
     LiveData<List<Item>> getAllItems();
 
+    //minAge: Int
+    @Query("SELECT * from tb_items where id = :id ")
+    LiveData<Item> find_one(int id);
 
 
 }
