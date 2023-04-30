@@ -17,13 +17,10 @@ class Splash : AppCompatActivity() {
 
         WindowCompat.getInsetsController(window, window.decorView)
             .hide(WindowInsetsCompat.Type.systemBars())
-
-        // we used the postDelayed(Runnable, time) method
-        // to send a message with a delayed time.
         CoroutineScope(Dispatchers.Main).launch {
             delay(1500)
         }
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Landing::class.java)
         startActivity(intent)
         finish()
 

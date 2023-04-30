@@ -1,25 +1,21 @@
 package mn.athen.test
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.button.MaterialButton
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
 import mn.athen.test.databinding.ActivityLandingBinding
 import mn.athen.test.viewmodel.CartViewModel
-import mn.athen.test.viewmodel.HomeViewModel
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -52,6 +48,14 @@ class Landing : AppCompatActivity(),PaymentResultWithDataListener  {
         }
 
         setupActionBarWithNavController(navController, AppBarConfiguration(navController.graph))
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if(destination.id == R.id.itemFragment) {
+                binding.landingBtmNavigation.visibility=View.GONE
+            } else {
+                binding.landingBtmNavigation.visibility=View.VISIBLE
+            }
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)

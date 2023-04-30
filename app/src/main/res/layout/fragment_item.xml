@@ -30,7 +30,8 @@
         android:importantForAccessibility="no"
         android:src="@drawable/splash"
         android:textAlignment="center"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
